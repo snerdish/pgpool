@@ -1,3 +1,5 @@
+Note: role assumes that two pgpool and two pgsql servers exist with streaming replication configred
+
 Pgpool
 ========
 

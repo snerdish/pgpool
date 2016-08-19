@@ -25,7 +25,7 @@ pgpool_memqcache_method: 'shmem'
 pgpool_memqcache_oiddir: '/var/log/pgpool/oiddir'
 pgpool_memqcache_total_size: 67108864
 pgpool_num_init_children: 32
-pgpool_pcp_password_file: /etc/pgpool-II/pcp_password
+pgpool_pcp_password_file: /etc/pgpool-II-95/pcp_password
 pgpool_pid_file_name: /var/run/pgpool/pgpool.pid
 pgpool_print_timestamp: on
 pgpool_replication_user: postgres

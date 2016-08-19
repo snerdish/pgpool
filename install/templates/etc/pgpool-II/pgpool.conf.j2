@@ -52,7 +52,7 @@ pcp_socket_dir = '/tmp'
 # other servers
 {% for member in pgpool_db_hosts %}
 backend_hostname{{ loop.index0 }} = '{{ member }}'
-backend_port{{ loop.index0 }} = {{db_port}}
+backend_port{{ loop.index0 }} = 5432
 backend_weight{{ loop.index0 }} = 1
 backend_flag{{ loop.index0 }} = 'ALLOW_TO_FAILOVER'
 backend_data_directory{{ loop.index0 }} = '{{postgresql_data_directory}}'

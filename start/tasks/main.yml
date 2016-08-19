@@ -1,5 +1,8 @@
+#- name: stop pgpool
+#  service: ame=pgpool-II-95 state=stopped
+
 - name: start pgpool
-  service: name=pgpool state=started
+  service: name=pgpool-II-95 state=started
 
 - name: wait for pgpool node to start
   pause: seconds=15

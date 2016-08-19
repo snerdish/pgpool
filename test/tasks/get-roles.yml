@@ -18,9 +18,9 @@
 
 - group_by: key="{{ gname }}_postgres_master_{{postgres_master}}"
 
-#- debug : var=groups['{{ gname }}_postgres_master_True']
+- debug : var=groups['{{ gname }}_postgres_master_True']
 
-#- debug : var=groups['{{ gname }}_postgres_master_True']|length
+- debug : var=groups['{{ gname }}_postgres_master_True']|length
 
 - assert: { that: "groups['{{ gname }}_postgres_master_True']|length == 1" }
 
@@ -44,14 +44,14 @@
 
 - group_by: key="{{ gname }}_pgpool_active_{{pgpool_active}}"
 
-#- debug : var=groups['{{ gname }}_pgpool_active_True']
+- debug : var=groups['{{ gname }}_pgpool_active_True']
 
-#- debug : var=groups['{{ gname }}_pgpool_active_False']
+- debug : var=groups['{{ gname }}_pgpool_active_False']
 
 - assert: { that: "groups['{{ gname }}_pgpool_active_True']|length == 1" }
 
 - name: get master node_id
-  shell: /usr/bin/pcp_master_node_id 10 localhost {{pgpool_pcp_port}} pgpool `cat /etc/pgpool-II/{{pgpool_pcp_password_file}}`
+  shell: /usr/bin/pcp_master_node_id 10 localhost {{pgpool_pcp_port}} pgpool `cat {{pgpool_pcp_password_file}}`
   register: is_master_node_id
   when: pgpool_active
   always_run: true

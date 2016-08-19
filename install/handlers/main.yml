@@ -2,9 +2,9 @@
   command: systemctl daemon-reload
 
 - name: restart pgpool
-  service: name=pgpool state=restarted enabled=yes
+  service: name=pgpool-II-95 state=restarted enabled=yes
 
 - name: reload pgpool
-  command: systemctl reload pgpool.service
+  command: systemctl reload pgpool-II-95
   args:
     warn: false

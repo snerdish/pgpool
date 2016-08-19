@@ -8,16 +8,16 @@
 - name: install needed packages
   yum: name={{ item }} state=installed
   with_items:
-    - postgresql-pgpool-II{{ "-" ~ pgpool_version if pgpool_version is defined else "" }}
-    - postgresql-pgpool-II-extensions{{ "-" ~ pgpool_version if pgpool_version is defined else "" }}
-    - postgresql-contrib{{ "-" ~ postgresql_version if postgresql_version is defined else "" }}
+    - pgpool-II-95{{ "-" ~ pgpool_version if pgpool_version is defined else "" }}
+    - pgpool-II-95-extensions{{ "-" ~ pgpool_version if pgpool_version is defined else "" }}
+    - postgresql95-contrib{{ "-" ~ postgresql_version if postgresql_version is defined else "" }}
 
 - name: create pgpool oid directory
   file: state=directory owner=root group=root mode=0755 dest="{{pgpool_memqcache_oiddir}}"
   when: pgpool_memory_cache_enabled|bool
 
 - name: install pgpool configuration files
-  template: src=etc/pgpool-II/{{item}}.j2 dest=/etc/pgpool-II/{{item}}
+  template: src=etc/pgpool-II/{{item}}.j2 dest=/etc/pgpool-II-95/{{item}}
   with_items:
   - pgpool.conf
   - pcp.conf
@@ -29,12 +29,12 @@
   - enable_pg_users
 
 - name: install pgpool password file
-  template: src=etc/pgpool-II/pcp_password.j2 dest=/etc/pgpool-II/pcp_password mode=0600 owner=root group=root
+  template: src=etc/pgpool-II/pcp_password.j2 dest=/etc/pgpool-II-95/pcp_password mode=0600 owner=root group=root
   tags:
   - core_config_updates
 
 - name: copy pgpool systemd configuration
-  template: src=etc/systemd/system/pgpool.service.j2 dest=/etc/systemd/system/pgpool.service owner=root group=root mode=0755
+  template: src=etc/systemd/system/pgpool-II-95.service.j2 dest=/etc/systemd/system/pgpool-II-95.service owner=root group=root mode=0755
   notify: reload systemd
 
 - name: install pgpool sysconfig file
@@ -71,7 +71,8 @@
   template: src=var/lib/pgsql/data/pgpool_recovery_1st_stage.j2 dest={{postgresql_data_directory}}/pgpool_recovery_1st_stage owner=postgres group=postgres mode=0755 setype=postgresql_exec_t
 
 - name: run pgpool
-  service: name=pgpool state=running enabled=yes
+
+  service: name=pgpool-II-95 state=running enabled=yes
 
 - name: ensure ansible facts directory exists
   file: state=directory path=/etc/ansible/facts.d

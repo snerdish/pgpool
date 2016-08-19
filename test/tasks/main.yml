@@ -6,7 +6,7 @@
     - python-httplib2 # for uri tests
 
 - name: make sure all postgres nodes are active
-  service: name=postgresql state=started enabled=yes
+  service: name=postgresql-9.5 state=started enabled=yes
 
   #- name: make sure all pgpool nodes are active
   # service: name=pgpool state=started enabled=yes

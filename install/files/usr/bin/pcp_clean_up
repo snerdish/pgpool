@@ -37,9 +37,9 @@ if test -n "$(find /tmp/ -maxdepth 1 -name '.s.PGSQL.9*' -print -quit)" &&  [[ `
 fi
 
 # if the delaget IP is assigned delete it
-DELIP=`grep delegate_IP /etc/pgpool-II/pgpool.conf | sed -e "s/^.*'\(.*\)'.*/\1/g"`;
+DELIP=`grep delegate_IP /etc/pgpool-II-95/pgpool.conf | sed -e "s/^.*'\(.*\)'.*/\1/g"`;
 if [[ `ip a | grep -c $DELIP` > 0 ]]; then
-	IPFOWN=`grep if_down_cmd /etc/pgpool-II/pgpool.conf | sed -e "s/^.*'\(.*\)'.*/\1/g"`;
+	IPFOWN=`grep if_down_cmd /etc/pgpool-II-95/pgpool.conf | sed -e "s/^.*'\(.*\)'.*/\1/g"`;
 	eval $IPFOWN;
 fi
 
